@@ -1,0 +1,27 @@
+name: centinela
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  # Datos NASA
+  - earthaccess        # login Earthdata + descarga SMAP/MODIS/GPM
+  - xarray
+  - rioxarray
+  - netcdf4
+  - h5netcdf
+  # Geoespacial
+  - geopandas
+  - shapely
+  - rasterio
+  # Analisis / utilidades
+  - pandas
+  - numpy
+  - requests           # NASA POWER (REST)
+  - matplotlib
+  - python-dotenv       # leer credenciales desde .env
+  # Notebooks
+  - jupyter
+  - ipykernel
+  - pip
+  - pip:
+      - nbstripout       # limpiar outputs de notebooks antes de commitear
