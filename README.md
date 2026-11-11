@@ -1,7 +1,7 @@
 # Centinela Fitosanitario 🍒🛰️
 
 Herramienta de apoyo a la decisión que cruza **riesgo de infección** × **viabilidad de aplicación**
-para huertos de cerezo y manzano en la Región de O'Higgins (Chile), usando observaciones de la Tierra de la NASA.
+para huertos de **cerezo** en la Región de O'Higgins (Chile), usando observaciones de la Tierra de la NASA.
 
 **NASA Space Apps Challenge 2026** — desafío *"Conviértete en un detective de tendencias del sistema terrestre"*.
 
@@ -12,8 +12,8 @@ para huertos de cerezo y manzano en la Región de O'Higgins (Chile), usando obse
 ## Qué hace (MVP)
 
 1. Detecta la **anomalía climática** de la temporada y argumenta que es significativa.
-2. Calcula un **índice de riesgo de infección** (humedad foliar + temperatura) para 1–2 patógenos.
-3. Calcula una **ventana de aplicación** (humedad del suelo + lluvia pronosticada) → semáforo puede/no puede.
+2. Calcula un **índice de riesgo de infección** (humedad foliar + temperatura) para *Botrytis cinerea* y *Monilinia fructicola*.
+3. Calcula el **riesgo de anegamiento y pasma** (humedad del suelo + lluvia) y la **ventana de aplicación** → semáforo puede/no puede.
 4. Entrega una **recomendación combinada** y un calendario de los próximos días.
 
 ---

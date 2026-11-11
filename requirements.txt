@@ -1,6 +1,6 @@
 # Dependencias de RUNTIME de la app Streamlit (ligeras, para Streamlit Cloud).
 # El entorno completo de desarrollo (geoespacial, earthaccess) esta en environment.yml.
-streamlit
+streamlit>=1.50
 streamlit-folium
 folium
 pandas

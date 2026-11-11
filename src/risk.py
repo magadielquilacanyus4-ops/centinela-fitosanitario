@@ -4,8 +4,8 @@ Logica central: riesgo de infeccion + viabilidad de aplicacion.
 ADVERTENCIA DE VALIDEZ (importante para el pitch):
 Los umbrales aqui son PLACEHOLDERS de arranque, no verdades agronomicas.
 Antes de presentar, reemplazar por modelos publicados y citables:
-  - Manzano / venturia (sarna): tabla de Mills (horas de humedad foliar x temperatura).
-  - Cerezo / pudriciones y canceres: umbrales de la literatura local (INIA).
+  - Cerezo / Botrytis cinerea y Monilinia fructicola: Biggs y Northover (1988),
+    Tamm et al. (1995), Hort Innovation CY13001 (temperatura x horas de mojado).
 Ver pendientes en la nota "Idea y alcance" (documentacion del proyecto), seccion 11.
 """
 from __future__ import annotations
