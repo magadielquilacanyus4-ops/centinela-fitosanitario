@@ -22,3 +22,7 @@ env/
 # Sistema / editor
 .DS_Store
 .vscode/
+
+# Claude Code (configuracion local, no se sube)
+CLAUDE.local.md
+.claude/settings.local.json

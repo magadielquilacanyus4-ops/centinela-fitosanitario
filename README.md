@@ -5,7 +5,7 @@ para huertos de cerezo y manzano en la Región de O'Higgins (Chile), usando obse
 
 **NASA Space Apps Challenge 2026** — desafío *"Conviértete en un detective de tendencias del sistema terrestre"*.
 
-> La idea y el alcance completo están en el doc del proyecto: `claude/idea-y-alcance.md`.
+> La idea y el alcance completo están en la documentación del proyecto ("Idea y alcance", fuera del repo). Ver `CLAUDE.md`.
 
 ---
 

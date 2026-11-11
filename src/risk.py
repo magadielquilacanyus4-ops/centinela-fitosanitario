@@ -6,7 +6,7 @@ Los umbrales aqui son PLACEHOLDERS de arranque, no verdades agronomicas.
 Antes de presentar, reemplazar por modelos publicados y citables:
   - Manzano / venturia (sarna): tabla de Mills (horas de humedad foliar x temperatura).
   - Cerezo / pudriciones y canceres: umbrales de la literatura local (INIA).
-Ver pendientes en claude/idea-y-alcance.md, seccion 11.
+Ver pendientes en la nota "Idea y alcance" (documentacion del proyecto), seccion 11.
 """
 from __future__ import annotations
 

@@ -116,5 +116,5 @@ with st.expander("Ver tabla dia a dia"):
 st.info(
     "Umbrales de riesgo provisionales (placeholder). Antes de decidir en terreno, "
     "reemplazar por modelos citables (tabla de Mills para venturia; umbrales INIA "
-    "para cerezo). Ver idea-y-alcance.md seccion 11."
+    "para cerezo). Ver la nota Idea y alcance, seccion 11."
 )
