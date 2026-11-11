@@ -68,3 +68,22 @@ Así git hace diffs limpios y el equipo no pelea por el JSON de los `.ipynb`.
 ## Equipo
 
 Proyecto del hackathon. Mantener el doc de alcance actualizado en el proyecto de Claude.
+
+---
+
+## Frontend (Streamlit)
+
+La app interactiva es `app.py` e importa la misma logica de `src/` (sin duplicar nada).
+
+```bash
+mamba activate centinela
+streamlit run app.py
+```
+
+### Desplegar en Streamlit Community Cloud (URL en vivo para la demo)
+
+1. Asegurate de que el repo este en GitHub (ya lo esta).
+2. Entra a https://share.streamlit.io/ e inicia sesion con GitHub.
+3. "New app" -> elige este repo, rama `main`, archivo `app.py`.
+4. Streamlit Cloud usa `requirements.txt` para instalar las dependencias de runtime.
+5. Deploy -> obtienes una URL publica para compartir en el pitch.

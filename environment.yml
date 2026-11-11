@@ -25,3 +25,5 @@ dependencies:
   - pip
   - pip:
       - nbstripout       # limpiar outputs de notebooks antes de commitear
+      - streamlit
+      - streamlit-folium
