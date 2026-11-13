@@ -7,7 +7,10 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent; sys.path.insert(0, str(RO
 from streamlit.testing.v1 import AppTest
 import src.nasa_power as npw, src.anomalia as an
 
+LLAMADAS = []
+
 def falso(lat, lon, start, end, params=None):
+    LLAMADAS.append((lat, lon))
     rng = np.random.default_rng(abs(hash((round(lat,2), start))) % (2**32))
     idx = pd.date_range(start, end, freq="D")
     n = len(idx)
@@ -35,6 +38,11 @@ print("metricas:", [(m.label, m.value, m.delta) for m in at.metric])
 print("texto anomalia:", [m.value for m in at.markdown if "acumulada" in m.value][:1])
 print("sidebar cultivo:", [m.value for m in at.sidebar.markdown])
 print("radios:", [r.label for r in at.sidebar.radio])
-# cambiar de comuna
-at.sidebar.selectbox[0].select("Rengo").run()
-print("tras cambiar a Rengo -> excepciones:", [e.value for e in at.exception], "| metricas:", [(m.label, m.value) for m in at.metric][:2])
+# anonimato: toda consulta a NASA debe usar el centro de la celda, no coordenadas de un predio
+from src import anonimato
+pt = anonimato.generalizar()
+usadas = sorted(set(LLAMADAS))
+print("coordenadas consultadas:", usadas)
+assert usadas == [(pt.lat, pt.lon)], "la app uso coordenadas distintas al centro de celda"
+assert not at.sidebar.selectbox, "ya no debe haber selector de comuna"
+print("OK anonimato")

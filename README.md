@@ -1,7 +1,7 @@
 # Centinela Fitosanitario 🍒🛰️
 
 Herramienta de apoyo a la decisión que cruza **riesgo de infección** × **viabilidad de aplicación**
-para huertos de **cerezo** en la Región de O'Higgins (Chile), usando observaciones de la Tierra de la NASA.
+para huertos de **cerezo** en la zona de Curicó, Región del Maule (Chile), usando observaciones de la Tierra de la NASA.
 
 **NASA Space Apps Challenge 2026** — desafío *"Conviértete en un detective de tendencias del sistema terrestre"*.
 
@@ -87,3 +87,14 @@ streamlit run app.py
 3. "New app" -> elige este repo, rama `main`, archivo `app.py`.
 4. Streamlit Cloud usa `requirements.txt` para instalar las dependencias de runtime.
 5. Deploy -> obtienes una URL publica para compartir en el pitch.
+
+## Privacidad y anonimato
+
+El repo es publico, así que el proyecto no usa ni muestra la ubicación de un predio real ni nombres de
+productores o empresas:
+
+- La app trabaja con una **parcela piloto** y solo usa el centro de la celda de datos de NASA POWER
+  (`src/anonimato.py`). La zona de estudio se cambia en una sola línea (`ZONA_ESTUDIO`).
+- Los nombres a proteger van en `data/privado/nombres.txt` (ignorado por git). Antes de publicar:
+  `python -m src.anonimato` escanea el repo y avisa si aparece alguno.
+- Los recortes de prensa y papers en PDF no se suben (`*.pdf` está en `.gitignore`).

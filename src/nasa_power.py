@@ -61,7 +61,43 @@ def get_power_daily(
     return df.where(df != -999.0)
 
 
+POWER_HORARIO_URL = "https://power.larc.nasa.gov/api/temporal/hourly/point"
+PARAMS_HORARIOS = ["T2M", "RH2M", "PRECTOTCORR"]
+
+
+def get_power_horario(
+    lat: float,
+    lon: float,
+    start: str,
+    end: str,
+    params: list[str] | None = None,
+) -> pd.DataFrame:
+    """Serie HORARIA de NASA POWER (hora local estandar). Disponible desde 2001.
+
+    Util para contar horas de mojado, que es lo que usan los modelos de infeccion
+    de hongos (temperatura x horas de mojado). start y end: 'YYYYMMDD'.
+    """
+    query = {
+        "parameters": ",".join(params or PARAMS_HORARIOS),
+        "community": "AG",
+        "longitude": lon,
+        "latitude": lat,
+        "start": start,
+        "end": end,
+        "format": "JSON",
+        "time-standard": "LST",
+    }
+    resp = requests.get(POWER_HORARIO_URL, params=query, timeout=90)
+    resp.raise_for_status()
+    df = pd.DataFrame(resp.json()["properties"]["parameter"])
+    df.index = pd.to_datetime(df.index, format="%Y%m%d%H")
+    df.index.name = "hora"
+    return df.where(df != -999.0)
+
+
 if __name__ == "__main__":
-    # Ejemplo: Codegua, O'Higgins, primavera 2026
-    df = get_power_daily(-34.03, -70.67, "20260901", "20261031")
+    # Ejemplo: zona de estudio anonimizada, primavera 2026
+    from src import anonimato
+    pt = anonimato.generalizar()
+    df = get_power_daily(pt.lat, pt.lon, "20260901", "20261031")
     print(df.tail())

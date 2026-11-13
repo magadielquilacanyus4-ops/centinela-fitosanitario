@@ -26,3 +26,6 @@ env/
 # Claude Code (configuracion local, no se sube)
 CLAUDE.local.md
 .claude/settings.local.json
+
+# Recortes de prensa y papers (derechos de autor / nombres de terceros)
+*.pdf

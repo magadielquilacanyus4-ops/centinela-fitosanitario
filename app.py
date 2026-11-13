@@ -1,7 +1,7 @@
 """
 Centinela Fitosanitario - app Streamlit (frontend MVP).
 
-Selector de comuna/cultivo -> descarga clima (NASA POWER) -> riesgo de infeccion
+Zona piloto anonimizada -> descarga clima (NASA POWER) -> riesgo de infeccion
 y ventana de aplicacion (src/risk.py) -> mapa, grafico del evento y semaforo.
 
 Correr local:  streamlit run app.py
@@ -15,7 +15,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 from src.nasa_power import get_power_daily
-from src import anomalia, risk
+from src import anomalia, anonimato, risk
 
 # streamlit-folium para el mapa (import defensivo: si falta, usamos st.map)
 try:
@@ -25,28 +25,24 @@ try:
 except Exception:
     _HAS_MAP = False
 
-# Comunas de O'Higgins (lat, lon aproximados). Agrega las que necesites.
-COMUNAS = {
-    "Codegua": (-34.03, -70.67),
-    "Graneros": (-34.07, -70.73),
-    "Mostazal": (-33.98, -70.70),
-    "Machali": (-34.18, -70.65),
-    "Rancagua": (-34.17, -70.74),
-    "Rengo": (-34.41, -70.86),
-}
+# Zona de estudio anonimizada (src/anonimato.py): la app solo usa el centro de la celda de datos.
+ZONA = anonimato.ZONA_ESTUDIO
+PUNTO = anonimato.generalizar(ZONA)
 
 st.set_page_config(page_title="Centinela Fitosanitario", page_icon="\U0001F352", layout="wide")
 
 st.title("\U0001F352\U0001F6F0️ Centinela Fitosanitario")
 st.caption(
     "Riesgo de infeccion x viabilidad de aplicacion para huertos de cerezo "
-    "en la Region de O'Higgins, con observaciones de la Tierra de la NASA."
+    f"en la zona de {ZONA.comuna} ({ZONA.region_texto}), con observaciones de la Tierra de la NASA."
 )
 
 # --- Controles ---
 with st.sidebar:
-    st.header("Parcela")
-    comuna = st.selectbox("Comuna", list(COMUNAS))
+    st.header("Zona de estudio")
+    comuna = ZONA.comuna
+    st.markdown(f"**Comuna:** {comuna}")
+    st.markdown("**Parcela:** piloto (ubicación generalizada)")
     st.markdown("**Cultivo:** Cerezo")
     cultivo = "Cerezo"
     st.divider()
@@ -55,7 +51,7 @@ with st.sidebar:
     fin = st.date_input("Hasta", dt.date(2026, 10, 31))
     st.caption("El evento de primavera 2026 se ve entre septiembre y octubre.")
 
-lat, lon = COMUNAS[comuna]
+lat, lon = PUNTO.lat, PUNTO.lon
 
 
 @st.cache_data(show_spinner="Descargando clima de NASA POWER...")
@@ -126,13 +122,18 @@ st.header("2. ¿Qué riesgo trajo? Hongos y ventana de aplicación")
 col_mapa, col_resumen = st.columns([1, 1])
 
 with col_mapa:
-    st.subheader(f"{comuna} - {cultivo}")
+    st.subheader(f"{PUNTO.etiqueta} - {cultivo}")
     if _HAS_MAP:
-        m = folium.Map(location=[lat, lon], zoom_start=11, tiles="OpenStreetMap")
-        folium.Marker([lat, lon], tooltip=comuna).add_to(m)
+        m = folium.Map(location=[lat, lon], zoom_start=8, tiles="OpenStreetMap")
+        folium.Rectangle(PUNTO.bbox, tooltip="Celda de datos NASA (~50 km)", fill=True,
+                         fill_opacity=0.15).add_to(m)
         st_folium(m, height=320, use_container_width=True)
     else:
         st.map(pd.DataFrame({"lat": [lat], "lon": [lon]}))
+    st.caption(
+        "Ubicación generalizada al centro de la celda de datos de NASA POWER (~50 km). "
+        "No corresponde a un predio ni a un productor real."
+    )
 
 with col_resumen:
     st.subheader("Semaforo de los ultimos dias")

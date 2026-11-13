@@ -245,8 +245,10 @@ def comparar_puntos(
 
 
 if __name__ == "__main__":
-    # Ejemplo: Codegua, primavera 2026 (requiere internet)
-    hist = descargar_historico(-34.03, -70.67)
+    # Ejemplo: zona de estudio anonimizada, primavera 2026 (requiere internet)
+    from src import anonimato
+    pt = anonimato.generalizar()
+    hist = descargar_historico(pt.lat, pt.lon)
     serie = agregar_por_anio(hist)
     a = evaluar_anomalia(serie, 2026)
     print(describir_anomalia(a))
