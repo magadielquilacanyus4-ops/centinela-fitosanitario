@@ -112,7 +112,7 @@ def ocultar_nombres(texto: str, nombres: list[str], reemplazo: str = "[reservado
 
 
 EXTENSIONES = (".py", ".md", ".txt", ".ipynb", ".json", ".yml", ".yaml", ".csv", ".toml")
-EXCLUIR = {".git", "__pycache__", "data", ".venv", "env", ".conda", ".ipynb_checkpoints"}
+EXCLUIR = {".git", "__pycache__", "privado", ".venv", "env", ".conda", ".ipynb_checkpoints"}
 EXCLUIR_ARCHIVOS = {"CLAUDE.local.md", "settings.local.json"}
 
 

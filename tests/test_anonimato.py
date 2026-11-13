@@ -26,8 +26,8 @@ def test_escanear_encuentra_y_respeta_exclusiones():
     with tempfile.TemporaryDirectory() as d:
         d = pathlib.Path(d)
         (d / "nota.md").write_text("linea 1\nproductor Ana Pérez en Molina\n", encoding="utf-8")
-        (d / "data").mkdir()
-        (d / "data" / "privado.md").write_text("Ana Pérez", encoding="utf-8")
+        (d / "data" / "privado").mkdir(parents=True)
+        (d / "data" / "privado" / "nombres.md").write_text("Ana Pérez", encoding="utf-8")
         (d / "CLAUDE.local.md").write_text("Ana Perez", encoding="utf-8")
         h = a.escanear(d, ["Ana Perez"])
         assert h == [("nota.md", 2, "Ana Perez")], h

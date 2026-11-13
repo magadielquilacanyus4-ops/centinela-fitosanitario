@@ -1,8 +1,8 @@
 # Credenciales
 .env
 
-# Datos (pueden ser pesados / privados)
-data/
+# Datos: se suben los CSV de NASA POWER (data/cache); solo lo privado queda fuera
+data/privado/
 *.nc
 *.hdf
 *.h5

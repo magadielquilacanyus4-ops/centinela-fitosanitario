@@ -30,8 +30,7 @@ mamba activate centinela
 # 2. Registrar el kernel para los notebooks
 python -m ipykernel install --user --name centinela --display-name "Python (centinela)"
 
-# 3. Activar la limpieza automatica de notebooks (una vez por clon)
-nbstripout --install
+# 3. Los notebooks se suben CON sus salidas (decision del 13-nov). No actives nbstripout.
 
 # 4. Credenciales Earthdata (para SMAP/MODIS/GPM via earthaccess)
 cp .env.example .env   # y edita con tu usuario/clave de https://urs.earthdata.nasa.gov/
@@ -98,3 +97,4 @@ productores o empresas:
 - Los nombres a proteger van en `data/privado/nombres.txt` (ignorado por git). Antes de publicar:
   `python -m src.anonimato` escanea el repo y avisa si aparece alguno.
 - Los recortes de prensa y papers en PDF no se suben (`*.pdf` está en `.gitignore`).
+- `data/` sí se sube (CSV de NASA POWER en `data/cache`, con nombres de archivo por celda de datos). Lo único que no se sube es `data/privado/`.
